@@ -33,5 +33,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # - name: CDK Deploy
-      #   run: cdk deploy --require-approval never
+      - name: Deploy only MyCdkStack
+        run: cdk deploy MyCdkStack --require-approval never
