@@ -1,14 +1,18 @@
-from aws_cdk import Stack, aws_s3 as s3
+from aws_cdk import (
+    Stack,
+    aws_s3 as s3,
+    RemovalPolicy
+)
 from constructs import Construct
 
 class MyCdkStack(Stack):
-    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
-        super().__init__(scope, construct_id, **kwargs)
+    def __init__(self, scope: Construct, id: str, **kwargs) -> None:
+        super().__init__(scope, id, **kwargs)
 
         s3.Bucket(
             self,
-            "MyFirstBucket-76473546465636",
+            "MyFirstBucket",
             versioned=True,
-            removal_policy=cdk.RemovalPolicy.DESTROY,  # NOT for production!
-            auto_delete_objects=True                   # Needs permissions
+            removal_policy=RemovalPolicy.DESTROY,  # For dev/testing only
+            auto_delete_objects=True
         )
